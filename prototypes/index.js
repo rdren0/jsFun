@@ -24,7 +24,8 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter(cat => cat.color === 'orange').map(cat => cat.name);
+
     return result;
 
     // Annotation:
@@ -34,7 +35,8 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((cat1, cat2) => cat2.age - cat1.age);
+      
     return result;
 
     // Annotation:
@@ -55,13 +57,13 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map(cat => {
+      cat.age += 2;
+      return cat;
+    });
     return result;
   }
 };
-
-
-
 
 
 
@@ -87,7 +89,16 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result =  clubs.reduce((acc, obj) => {
+      obj.members.forEach(member => {
+        if (!acc[member]) {
+          acc[member] = [];
+        }
+        acc[member].push(obj.club);
+      });
+      return acc;
+    }, {});
+
     return result;
 
     // Annotation:
@@ -123,7 +134,12 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map(obj =>{
+      return {
+        mod: obj.mod,
+        studentsPerInstructor: obj.students/obj.instructors
+      };
+    });
     return result;
 
     // Annotation:
@@ -158,7 +174,12 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map(cake =>{
+      return {
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+      };
+    });
     return result;
 
     // Annotation:
@@ -186,7 +207,11 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake =>{
+      if (cake.inStock >0){
+        return cake;
+      }
+    });
     return result;
 
     // Annotation:
@@ -197,7 +222,10 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake)=>{
+      acc += cake.inStock;
+      return acc;
+    },0);
     return result;
 
     // Annotation:
@@ -209,7 +237,19 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake)=>{
+      cake.toppings.forEach(topping => {
+        if (!topping) {
+          acc.push(topping);
+        }
+        
+      });
+      return acc;
+
+
+    },[]) ;
+    
+       
     return result;
 
     // Annotation:
@@ -686,11 +726,25 @@ const dinosaurPrompts = {
     Return an array of objects that contain the names of humans who have not been cast in a Jurassic Park movie (yet), their nationality, and their imdbStarMeterRating. The object in the array should be sorted alphabetically by nationality.
 
     e.g.
-
-    [ { name: 'Justin Duncan', nationality: 'Alien', imdbStarMeterRating: 0 },
-      { name: 'Tom Wilhoit', nationality: 'Kiwi', imdbStarMeterRating: 1 },
-      { name: 'Jeo D', nationality: 'Martian', imdbStarMeterRating: 0 },
-      { name: 'Karin Ohman', nationality: 'Swedish', imdbStarMeterRating: 0 } ]
+    [{
+        name: 'Justin Duncan',
+        nationality: 'Alien',
+        imdbStarMeterRating: 0
+      }, 
+      {
+        name: 'Karin Ohman',
+        nationality: 'Chinese',
+        imdbStarMeterRating: 0
+      },
+      {
+        name: 'Tom Wilhoit',
+        nationality: 'Kiwi',
+        imdbStarMeterRating: 1
+      }, {
+        name: 'Jeo D',
+        nationality: 'Martian',
+        imdbStarMeterRating: 0
+      }]
     */
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
